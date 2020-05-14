@@ -1,0 +1,23 @@
+{
+    "name": "evandroas01/desafio",
+    "description": "Desafio da Webjump",
+    "minimum-stabily": "stable",
+    "license": "MIT",
+    "authors": [{
+
+        "name": "Evandro Silva",
+        "email": "evandroaugusto83@gmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Config.php"
+        ]
+    },
+
+    "require": {
+        "coffeecode/router": "1.0.*"
+    }
+}
