@@ -4,6 +4,23 @@ namespace Source\App;
 
 class Store
 {
+    public function debug($data)
+    {
+        echo "Debug!";
+
+        $model = new \Source\Models\Product();
+
+        $insert = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
+        $insert->save();
+
+        // $model = new \Source\Models\Category();
+
+        // $insert = $model->info("teste","123456");
+        // $insert->save();
+
+        var_dump($model->errorCode());
+
+    }
 
     public function dashboard($data)
     {
@@ -12,25 +29,22 @@ class Store
  
     public function products($data)
     {
-        echo "<h1>Produtos!</h1>";
-        var_dump($data);
+        require __DIR__."/../../views/products.html";
     }
     
     public function addProducts($data)
     {
-        echo "<h1>Add Produtos!</h1>";
-        var_dump($data);
+        require __DIR__."/../../views/addProduct.html";
     }
 
     public function categories($data)
     {
-        echo "<h1>Categoria!</h1>";
-        var_dump($data);
+        require __DIR__."/../../views/categories.html";
     }
 
     public function addCategories($data)
     {
-        echo "<h1>Add Categories!</h1>";
+        require __DIR__."/../../views/addCategory.html";
     }
 
     public function error($data)
