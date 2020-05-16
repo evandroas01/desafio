@@ -36,7 +36,7 @@ class Product extends Model
     {
         $find = $this->read("SELECT {$columns} FROM " .self::$entity. " WHERE sku = :sku", "sku={$sku}");
         if ($this->fail() || !$find->rowCount()){
-            $this->message = "Usuario não encontrado, para o nome informado!";
+            $this->message = "Sku não encontrado, para o nome informado!";
             return null;
         }
         return $find->fetchObject(__CLASS__);

@@ -1,3 +1,3 @@
 <?php
 
-define("URL_BASE", "http://40.71.189.12");
+define("URL_BASE", "http://137.117.42.10");

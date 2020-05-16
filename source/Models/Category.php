@@ -60,6 +60,12 @@ class Category extends Model
             $id = $this->id;
             $code = $this->read("SELECT id FROM categories WHERE code = :code AND id != :id","code={$this->code}&id={$id}");
 
+            var_dump($code);
+
+            if ($code->rowCount()) {
+                $this->message = "O e-mail informado já está cadastrado";
+                return null;
+            }
 
             $this->update(self::$entity, $this->safe(), "id = :id", "id={$id}");
             if ($this->fail()){
@@ -68,6 +74,7 @@ class Category extends Model
 
             $this->message = "Cadastro atualizado com sucesso";
         }
+
 
         /**Category Create */
         if (empty($this->id)){

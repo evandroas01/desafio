@@ -6,19 +6,19 @@ class Store
 {
     public function debug($data)
     {
-        echo "Debug!";
+        echo "<h1>Debug!</h1><br>";
 
-        $model = new \Source\Models\Product();
+        // $model = new \Source\Models\Product();
 
-        $insert = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
-        $insert->save();
-
-        // $model = new \Source\Models\Category();
-
-        // $insert = $model->info("teste","123456");
+        // $insert = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
         // $insert->save();
 
-        var_dump($model->errorCode());
+        $model = new \Source\Models\Category();
+
+        $insert = $model->info($_POST['catname'],$_POST['catcode']);
+        $insert->save();
+
+        echo $insert->message();
 
     }
 
