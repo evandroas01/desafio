@@ -15,10 +15,34 @@ $router->get("/","Store:dashboard");
 $router->get("/{filter}", "Store:dashboard");
 
 //debug
-$router->group("debug");
+$router->group(null);
 $router->get("/","Store:debug");
-$router->post("/","Store:debug");
 $router->get("/{filter}", "Store:debug");
+
+//insertcategories
+$router->group("insertCategories");
+$router->get("/","Store:insertCategories");
+$router->post("/","Store:insertCategories");
+$router->get("/{filter}", "Store:insertCategories");
+
+//readcat
+$router->group("readcat");
+$router->get("/","Store:readcat");
+$router->post("/","Store:readcat");
+$router->get("/{filter}", "Store:readcat");
+
+//readcat
+$router->group("readprod");
+$router->get("/","Store:readprod");
+$router->post("/","Store:readprod");
+$router->get("/{filter}", "Store:readprod");
+
+
+//insertProduct
+$router->group("insertProduct");
+$router->get("/","Store:insertProduct");
+$router->post("/","Store:insertProduct");
+$router->get("/{filter}", "Store:insertProduct");
 
 //Produtos
 $router->group("products");

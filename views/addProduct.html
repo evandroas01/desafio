@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" type="text/css" media="all" href="/lib/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <script src="/lib/js/jquery.min.js"></script>
+    <script src="/lib/product/newproduct.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <style amp-boilerplate>
         body {
@@ -94,7 +96,7 @@
 <main class="content">
     <h1 class="title new-item">New Product</h1>
 
-    <form method="POST" action="/debug">
+    <form action="create_product" method="POST" enctype="multipart/form-data">
         <div class="input-field">
             <label for="sku" class="label">Product SKU</label>
             <input type="text" id="sku" name="sku" class="input-text" />

@@ -42,14 +42,14 @@ class Product extends Model
         return $find->fetchObject(__CLASS__);
     }
 
-    public function all($limit = 10 , $ofsset = 0, string $columns = "*")
+    public function all($limit = 50 , $ofsset = 0, string $columns = "*")
     {
         $all = $this->read("SELECT {$columns} FROM " .self::$entity. " LIMIT :l OFFSET :o", "l={$limit}&o={$ofsset}");
         if ($this->fail() || !$all->rowCount()){
             $this->message = "Sua consulta não retornou usuarios!";
             return null;
         }
-        return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
+        return $all->fetchAll(\PDO::FETCH_ASSOC);
 
     }
 
@@ -91,8 +91,20 @@ class Product extends Model
         return $id;
     }
 
-    public function destroy()
+    public function destroy(): ?product
     {
+        if(!empty($this->id)){
+            $this->delete(self::$entity, "id = :id", "id{$this->id}");
+        }
+
+        if ($this->fail()){
+            $this->message = "Não foi possivel remover o produto";
+            return null;
+        }
+
+        $this->message = "Produto removido com sucesso";
+        // $this->data = null;
+        return $this;        
 
     }
 
@@ -100,7 +112,7 @@ class Product extends Model
     {
 
         if(empty($this->name) || empty($this->price) || empty($this->categories)){
-            $this->message = "O Nome, documento, email  são campos obrigatorios!";
+            $this->message = "O Nome, SKU, Price são campos obrigatorios!";
             return false;
             // "$name, string $sku,  $price, string $description, int $amount, string $categories";
         }

@@ -32,10 +32,7 @@ abstract class Model
         $this->data->$name = $value;
     }
 
-    /**
-     * @param $name
-     * @return bool
-     */
+  
     public function __isset($name)
     {
         return isset($this->data->$name);

@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" type="text/css" media="all" href="/lib/css/style.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <script src="/lib/js/jquery.min.js"></script>
+    <script src="/lib/categories/categories.js"></script>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <style amp-boilerplate>
         body {
@@ -110,38 +112,7 @@
                     <span class="data-grid-cell-content">Actions</span>
                 </th>
             </tr>
-            <tr class="data-row">
-                <td class="data-grid-td">
-                    <span class="data-grid-cell-content">Category 1 Name</span>
-                </td>
-
-                <td class="data-grid-td">
-                    <span class="data-grid-cell-content">Category 1 Code</span>
-                </td>
-
-                <td class="data-grid-td">
-                    <div class="actions">
-                        <div class="action edit"><span>Edit</span></div>
-                        <div class="action delete"><span>Delete</span></div>
-                    </div>
-                </td>
-            </tr>
-            <tr class="data-row">
-                <td class="data-grid-td">
-                    <span class="data-grid-cell-content">Category 2 Name</span>
-                </td>
-
-                <td class="data-grid-td">
-                    <span class="data-grid-cell-content">Category 2 Code</span>
-                </td>
-
-                <td class="data-grid-td">
-                    <div class="actions">
-                        <div class="action edit"><span>Edit</span></div>
-                        <div class="action delete"><span>Delete</span></div>
-                    </div>
-                </td>
-            </tr>
+            <tbody id="tabela"></tbody>
         </table>
     </main>
     <!-- Main Content -->

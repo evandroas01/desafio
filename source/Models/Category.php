@@ -38,14 +38,14 @@ class Category extends Model
         return $find->fetchObject(__CLASS__);
     }
 
-    public function all($limit = 10 , $ofsset = 0, string $columns = "*")
+    public function all($limit = 50 , $ofsset = 0, string $columns = "*")
     {
         $all = $this->read("SELECT {$columns} FROM " .self::$entity. " LIMIT :l OFFSET :o", "l={$limit}&o={$ofsset}");
         if ($this->fail() || !$all->rowCount()){
             $this->message = "Sua consulta não retornou usuarios!";
             return null;
         }
-        return $all->fetchAll(\PDO::FETCH_CLASS, __CLASS__);
+        return $all->fetchAll(\PDO::FETCH_ASSOC);
 
     }
 

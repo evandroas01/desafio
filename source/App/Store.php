@@ -4,23 +4,77 @@ namespace Source\App;
 
 class Store
 {
-    public function debug($data)
+    public function insertProduct($data)
     {
-        echo "<h1>Debug!</h1><br>";
+       
+        $model = new \Source\Models\Product();
 
-        // $model = new \Source\Models\Product();
+        $insert = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
+        $insert->save();
 
-        // $insert = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
-        // $insert->save();
+        $confirm = ($insert->message() == "Cadastro realizado com sucesso") ? true : false;
 
+        $message = array("success" => $confirm,"message" => $insert->message());
+
+        echo json_encode($message);
+
+    }
+
+    public function insertCategories($data)
+    {
+     
         $model = new \Source\Models\Category();
 
         $insert = $model->info($_POST['catname'],$_POST['catcode']);
         $insert->save();
 
-        echo $insert->message();
+        $confirm = ($insert->message() == "Cadastro realizado com sucesso") ? true : false;
+
+        $message = array("success" => $confirm,"message" => $insert->message());
+
+        echo json_encode($message);
 
     }
+
+    public function debug($data)
+    {
+        echo "to aqui!";
+     
+        $model = new \Source\Models\Product();
+
+        $insert = $model->load(28);
+        $insert->destroy(); 
+        // $insert->save();
+
+        var_dump($insert);
+
+    }
+
+
+    public function readcat()
+    {
+
+        $model = new \Source\Models\Category();
+
+        $insert = $model->all();
+
+        $encode = json_encode($insert);
+        
+        echo $encode;
+    }
+
+    public function readprod()
+    {
+
+        $model = new \Source\Models\Product();
+
+        $insert = $model->all();
+
+        $encode = json_encode($insert);
+        
+        echo $encode;
+    }
+
 
     public function dashboard($data)
     {
