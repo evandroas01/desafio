@@ -15,7 +15,7 @@ $router->get("/","Store:dashboard");
 $router->get("/{filter}", "Store:dashboard");
 
 //debug
-$router->group(null);
+$router->group("debug");
 $router->get("/","Store:debug");
 $router->get("/{filter}", "Store:debug");
 
@@ -24,6 +24,12 @@ $router->group("insertCategories");
 $router->get("/","Store:insertCategories");
 $router->post("/","Store:insertCategories");
 $router->get("/{filter}", "Store:insertCategories");
+
+//deletecategories
+$router->group("catdelete");
+$router->get("/","Store:catdelete");
+$router->post("/","Store:catdelete");
+$router->get("/{filter}", "Store:catdelete");
 
 //readcat
 $router->group("readcat");

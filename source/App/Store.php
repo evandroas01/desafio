@@ -40,13 +40,32 @@ class Store
     {
         echo "to aqui!";
      
-        $model = new \Source\Models\Product();
+        // $model = new \Source\Models\Category();
 
-        $insert = $model->load(28);
-        $insert->destroy(); 
-        // $insert->save();
+        // $update = $model->load('4');
 
-        var_dump($insert);
+        // if($update){
+        //     $update->destroy(); 
+        // }
+        // $update->code = "1987";
+        // $update->name = "ultimo update"; 
+        // $update->destroy(); 
+        // $update->save();
+
+        var_dump($update);
+
+    }
+
+    public function catdelete($data)
+    {
+        echo "to aqui delete!";
+     
+        $model = new \Source\Models\Category();
+
+        $delete = $model->load($_POST['id']);
+        $delete->destroy(); 
+      
+        var_dump($update);
 
     }
 

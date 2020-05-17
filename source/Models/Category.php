@@ -60,10 +60,8 @@ class Category extends Model
             $id = $this->id;
             $code = $this->read("SELECT id FROM categories WHERE code = :code AND id != :id","code={$this->code}&id={$id}");
 
-            var_dump($code);
-
             if ($code->rowCount()) {
-                $this->message = "O e-mail informado já está cadastrado";
+                $this->message = "O codigo informado já está cadastrado";
                 return null;
             }
 
@@ -94,8 +92,20 @@ class Category extends Model
         return $id;
     }
 
-    public function destroy()
+    public function destroy(): ?Category
     {
+        if (!empty($this->id)){
+            $this->delete(self::$entity, "id = :id", "id={$this->id}");
+        }
+
+        if ($this->fail()){
+            $this->message = "Não foi possivel remover a categoria";
+            return null;
+        }
+
+        $this->message = "Categoria excluida com sucesso";
+        $this->data = null;
+        return $this;
 
     }
 
