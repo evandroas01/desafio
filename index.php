@@ -19,43 +19,67 @@ $router->group("debug");
 $router->get("/","Store:debug");
 $router->get("/{filter}", "Store:debug");
 
-//insertcategories
+//Insert-Categories
 $router->group("insertCategories");
 $router->get("/","Store:insertCategories");
 $router->post("/","Store:insertCategories");
 $router->get("/{filter}", "Store:insertCategories");
 
-//deletecategories
+//Delete-Categories
 $router->group("catdelete");
 $router->get("/","Store:catdelete");
 $router->post("/","Store:catdelete");
 $router->get("/{filter}", "Store:catdelete");
 
-//readcat
+//Read-Category
 $router->group("readcat");
 $router->get("/","Store:readcat");
 $router->post("/","Store:readcat");
 $router->get("/{filter}", "Store:readcat");
 
-//readcat
+//Read-Product
 $router->group("readprod");
 $router->get("/","Store:readprod");
 $router->post("/","Store:readprod");
 $router->get("/{filter}", "Store:readprod");
 
 
-//insertProduct
+//Insert-Product
 $router->group("insertProduct");
 $router->get("/","Store:insertProduct");
 $router->post("/","Store:insertProduct");
 $router->get("/{filter}", "Store:insertProduct");
 
-//Produtos
+//Delete-Product
+$router->group("proddelete");
+$router->get("/","Store:prodDelete");
+$router->post("/","Store:prodDelete");
+$router->get("/{filter}", "Store:prodDelete");
+
+//Delete-Category  updateProduct
+$router->group("catdelete");
+$router->get("/","Store:catDelete");
+$router->post("/","Store:catDelete");
+$router->get("/{filter}", "Store:catDelete");
+
+//List-Categorias
+$router->group("updateproduct");
+$router->get("/","Store:updateProduct");
+$router->post("/","Store:updateProduct");
+
+
+//List-Categorias
+$router->group("updatecategory");
+$router->get("/","Store:updateCategory");
+$router->post("/","Store:updateCategory");
+
+
+//List-Produtos
 $router->group("products");
 $router->get("/", "Store:products");
 $router->get("/add", "Store:addProducts");
 
-//Categorias
+//List-Categorias
 $router->group("categories");
 $router->get("/","Store:categories");
 $router->get("/add","Store:addCategories");

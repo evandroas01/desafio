@@ -62,15 +62,20 @@ class Product extends Model
         /**Product Update */
         if (!empty($this->id)){
             $id = $this->id;
-            $sku = $this->read("SELECT id FROM product WHERE sku = :sku AND id != :id","sku={$this->sku}&id={$id}");
+            $sku = $this->read("SELECT id FROM product WHERE sku = :sku AND id != :id","code={$this->sku}&id={$id}");
 
+            if ($code->rowCount()) {
+                $this->message = "O Produto informado já está cadastrado";
+                return null;
+            }
 
             $this->update(self::$entity, $this->safe(), "id = :id", "id={$id}");
             if ($this->fail()){
                 $this->message = "Erro ao atualizar, verifique os dados";
             }
 
-            $this->message = "Cadastro atualizado com sucesso";
+            $this->message = "Produto atualizado com sucesso";
+            
         }
 
         /**Product Create */
@@ -91,7 +96,7 @@ class Product extends Model
         return $id;
     }
 
-    public function destroy(): ?product
+    public function destroy(): ?Product
     {
         if(!empty($this->id)){
             $this->delete(self::$entity, "id = :id", "id{$this->id}");

@@ -4,37 +4,6 @@ namespace Source\App;
 
 class Store
 {
-    public function insertProduct($data)
-    {
-       
-        $model = new \Source\Models\Product();
-
-        $insert = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
-        $insert->save();
-
-        $confirm = ($insert->message() == "Cadastro realizado com sucesso") ? true : false;
-
-        $message = array("success" => $confirm,"message" => $insert->message());
-
-        echo json_encode($message);
-
-    }
-
-    public function insertCategories($data)
-    {
-     
-        $model = new \Source\Models\Category();
-
-        $insert = $model->info($_POST['catname'],$_POST['catcode']);
-        $insert->save();
-
-        $confirm = ($insert->message() == "Cadastro realizado com sucesso") ? true : false;
-
-        $message = array("success" => $confirm,"message" => $insert->message());
-
-        echo json_encode($message);
-
-    }
 
     public function debug($data)
     {
@@ -52,23 +21,9 @@ class Store
         // $update->destroy(); 
         // $update->save();
 
-        var_dump($update);
+        // var_dump($update);
 
     }
-
-    public function catdelete($data)
-    {
-        echo "to aqui delete!";
-     
-        $model = new \Source\Models\Category();
-
-        $delete = $model->load($_POST['id']);
-        $delete->destroy(); 
-      
-        var_dump($update);
-
-    }
-
 
     public function readcat()
     {
@@ -92,6 +47,96 @@ class Store
         $encode = json_encode($insert);
         
         echo $encode;
+    }
+
+    public function insertProduct($data)
+    {
+       
+        $model = new \Source\Models\Product();
+
+        $insertProd = $model->bootstrap($_POST['name'], $_POST['sku'], $_POST['price'], $_POST['description'], $_POST['qts'], $_POST['category']);
+        $insertProd->save();
+
+        $confirm = ($insertProd->message() == "Cadastro realizado com sucesso") ? true : false;
+
+        $message = array("success" => $confirm,"message" => $insertProd->message());
+
+        echo json_encode($message);
+
+    }
+
+    public function insertCategories($data)
+    {
+     
+        $model = new \Source\Models\Category();
+
+        $insertCat = $model->info($_POST['catname'],$_POST['catcode']);
+        $insertCat->save();
+
+        $confirm = ($insertCat->message() == "Cadastro realizado com sucesso") ? true : false;
+
+        $message = array("success" => $confirm,"message" => $insertCat->message());
+
+        echo json_encode($message);
+
+    }
+
+    public function updateProduct($data)
+    {
+       
+        $model = new \Source\Models\Product();
+
+        $upProduct = $model->load($_POST['id']);
+        $upProduct->name = $_POST['id'];
+        $upProduct->sku =  $_POST['sku'];
+        $upProduct->price = $_POST['price'];
+        $upProduct->description = $_POST['description'];
+        $upProduct->amount = $_POST['amount'];
+        $upProduct->categories = $_POST['categories'];
+        $upProduct->save();
+      
+        var_dump($upProduct->message());
+
+    }
+
+    public function updateCategory($data)
+    {
+       
+        $model = new \Source\Models\Category();
+
+        $upCategory = $model->load($_POST['id']);
+        $upCategory->name = $_POST['name'];
+        $upCategory->code =  $_POST['code'];
+        $upCategory->save();
+      
+        var_dump($upCategory->message());
+
+    }
+
+ 
+
+    public function catDelete($data)
+    {
+     
+        $model = new \Source\Models\Category();
+
+        $deleteCat = $model->load($_POST['id']);
+        $deleteCat->destroy(); 
+      
+        var_dump($deleteCat->message());
+
+    }
+
+    public function prodDelete($data)
+    {
+     
+        $model = new \Source\Models\Product();
+
+        $deleteProd = $model->load($_POST['id']);
+        $deleteProd->destroy(); 
+      
+        var_dump($deleteProd->message());
+
     }
 
 
